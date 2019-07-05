@@ -13,8 +13,8 @@
                 <MenuItem name="2-1">数据中心</MenuItem>
                 <MenuItem name="2-2">实验站点</MenuItem>
             </MenuGroup>
-            <MenuGroup title="砖家队伍">
-                <MenuItem name="2-3">砖家队伍</MenuItem>
+            <MenuGroup title="专家队伍">
+                <MenuItem name="2-3">专家队伍</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="3">
@@ -57,7 +57,22 @@ export default {
       let to = '/';
       switch(name){
         case '1': to = '/home'; break;
-        case '2-0': to = '/country/list'; break;
+        case '2-0': to = '/newlist/1-1-1'; break;
+        case '2-1': to = '/newlist/1-1-2'; break;
+        case '2-2': to = '/newlist/1-1-3'; break;
+
+        case '2-3': to = '/newlist/1-2'; break;
+
+        case '3-0': to = '/newlist/2-1'; break;
+        case '3-1': to = '/newlist/2-2-1'; break;
+        case '3-2': to = '/newlist/2-2-2'; break;
+
+        case '2-1': to = '/newlist/2-3'; break;
+
+        case '4-0': to = '/newlist/3-1'; break;
+        case '4-1': to = '/newlist/3-2'; break;
+        case '4-2': to = '/newlist/3-3'; break;
+        case '5': to = '/newlist/4'; break;
         default: to = '/';
       }
       this.router.push(to);

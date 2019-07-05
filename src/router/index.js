@@ -32,8 +32,9 @@ export default new Router({
       name: 'newlist',
       component: resolve => require(['@/components/NewList'], resolve),
     },
+
     {
-      path: 'detail/:countryid',
+      path: 'detail/:newid',
       name: 'newdetail',
       component: resolve => require(['@/components/NewDetail'], resolve),
     }

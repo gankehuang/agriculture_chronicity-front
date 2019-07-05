@@ -5,7 +5,9 @@
         <CarouselItem v-for="(item, index) in autoNew" v-if="item.Recommend==1" :key="index">
             <div class="demo-carousel">
                 <!-- <img :src="item.Pic" alt="" style="width: 100%"> -->
-                <div class="itemImg" v-bind:style="{background:'url('+item.Pic+') no-repeat center', backgroundSize:'cover'}"></div>
+                <router-link class="item" :to="{name:'newdetail', params:{newid:item.Id}}">
+                    <div class="itemImg" v-bind:style="{background:'url('+item.Pic+') no-repeat center', backgroundSize:'cover'}"></div>
+                </router-link>
             </div>
         </CarouselItem>
         
@@ -15,7 +17,7 @@
       <span style="color: #02B2B5; border-left: 6px solid #02B2B5; padding: 0px 10px">通知公告</span>
     </div>
     <div style="color: black; margin-top: 5px">
-        <marquee width="100%" height="28px" direction="left" scrollamount="3" 
+        <marquee width="100%" height="28px" direction="left" scrollamount="5" 
           onmouseover="this.stop()" onmouseout="this.start()">
             {{notificationAnnouncement.Content}}
         </marquee>
@@ -23,9 +25,10 @@
     <img src="../assets/img/new.png" alt="" style="width: 100%; margin-top: 50px">
     <div class="new_box" >
         <div>
-            <span class="title">工作动态</span>
+            <span class="title"><img src="../assets/img/2000167.gif" alt="">工作动态</span>
             <div>
                 <img :src="workTrend.Pic" style="width: 100%">
+                <!-- <div style="width: 100%; height: 220px" v-bind:style="{background:'url('+workTrend.Pic+') no-repeat center', backgroundSize:'100%'}"></div> -->
                 <p class="p_one">{{workTrend.Title}}</p>
                 <p class="p_two">{{workTrend.Synopsis}}</p>
                 <div class="bottom">
@@ -35,7 +38,7 @@
             </div>
         </div>
         <div>
-            <span class="title">行业资讯</span>
+            <span class="title"><img src="../assets/img/2000167.gif" alt="">行业资讯</span>
             <div>
                 <img :src="industryInformation.Pic" style="width: 100%">
                 <p class="p_one">{{industryInformation.Title}}</p>
@@ -47,7 +50,7 @@
             </div>
         </div>
         <div>
-            <span class="title">学术资讯</span>
+            <span class="title"><img src="../assets/img/2000167.gif" alt="">学术资讯</span>
             <div>
                 <img :src="AcademicInformation.Pic" style="width: 100%">
                 <p class="p_one">{{AcademicInformation.Title}}</p>
@@ -64,8 +67,10 @@
 
     <div class="data_center">
         <div v-for="item in dataCenter">
-            <img :src="item.Pic" alt="" style="width: 100%">
-            <p>{{item.Title}}</p>
+            <router-link class="item" :to="{name:'newdetail', params:{newid:item.Id}}">
+                <img :src="item.Pic" alt="" style="width: 100%">
+                <p>{{item.Title}}</p>
+            </router-link>
         </div>
         
 
@@ -159,7 +164,7 @@ export default {
 
 <style lang="less" scoped>
 .Home{
-
+  margin-top: 5px;
   .itemImg{
       width: 100%;
       height: 500px;
@@ -172,11 +177,13 @@ export default {
       display: inline-block;
       vertical-align: top;
       height: 500px;
-      .title{ text-align: center; font-size: 16px; display: inline-block; width: 100%; background: #F2F2F2; font-size: 20px; font-weight: bold; color:#007072; padding-bottom: 20px; }
+      .title{ text-align: center; font-size: 16px; display: inline-block; width: 100%; background: #F2F2F2; font-size: 20px; font-weight: bold; color:#007072; padding-bottom: 20px; 
+        img{ vertical-align: middle; margin-right: 10px; }
+      }
       width: 30%;
       margin: 0 15px;
       background: #ffffff;
-      .p_one{ font-size: 16px; margin-top: 5px; padding: 10px;}
+      .p_one{ font-size: 16px; margin-top: 5px; padding: 10px; font-weight: bold;}
       .p_two{ font-size: 14px; margin-top: 5px; padding: 0 10px;}
       .bottom{ 
           padding: 0 10px;

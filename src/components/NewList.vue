@@ -26,26 +26,43 @@ export default {
   data: function () {
     return {
       'newlist': [],
-      'newType': ''
+      'newType': '',
+      'listid': ''
     }
   },
-  props: {
-      listid: String
-  },
   created() {
-      let listid = this.$route.params.listid
-      this.listid = listid;
-      if(listid === '3-1'){
-          this.newType = '工作动态'
-      }else if(listid === '3-2'){
-          this.newType = '行业资讯'
-      }else if(listid === '3-3'){
-          this.newType = '学术资讯'
-      }
-      this.getData(listid) 
+      this.getType()
+      this.getData(this.listid) 
   },
   
   methods: {
+    getType() {
+        let listid = this.$route.params.listid
+        this.listid = listid;
+        if(listid === '3-1'){
+            this.newType = '工作动态'
+        }else if(listid === '3-2'){
+            this.newType = '行业资讯'
+        }else if(listid === '3-3'){
+            this.newType = '学术资讯'
+        }else if(listid === '1-1-1'){
+            this.newType = '共享联盟'
+        }else if(listid === '1-1-2'){
+            this.newType = '数据中心'
+        }else if(listid === '1-1-3'){
+            this.newType = '实验站点'
+        }else if(listid === '1-2'){
+            this.newType = '专家队伍'
+        }else if(listid === '2-1'){
+            this.newType = '各中心检测任务'
+        }else if(listid === '2-2-1'){
+            this.newType = '用户手册'
+        }else if(listid === '2-2-2'){
+            this.newType = '汇交系统FAQ'
+        }else if(listid === '2-3'){
+            this.newType = '应用案例'
+        }
+    },
     getData(type) {
             const _this = this;
             const prommise_getInfoList = _this.global.$post({
@@ -54,7 +71,7 @@ export default {
                 'data': {
                     draw: 0, 
                     start: 0, 
-                    length: 10, 
+                    length: 10000, 
                     retrievalInfo : JSON.stringify({'Type': type }),
                 },
                 'f_resolve': function(res){
@@ -66,11 +83,18 @@ export default {
             });
         },
  
+  },
+  watch:{
+     "$route":function(to,from){
+        //console.log(this.$route.params.listid);
+        this.getType()
+        this.getData(this.$route.params.listid)
+     }
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import '../assets/styles/common.less';
 
 .CountryList{
